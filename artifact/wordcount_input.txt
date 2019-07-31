@@ -1,0 +1,37 @@
+import java.io.Serializable;  
+public class Employee implements Serializable{  
+ int id;  
+ String name; 
+String loc; 
+ public Employee(int id, String name,String loc) {  
+  this.id = id;  
+  this.name = name;  
+  this.loc=loc;
+ }  
+}  
+
+
+import java.io.*;  
+class SerializeEx{  
+ public static void main(String args[])throws Exception{  
+  Employee e =new Employee(200207874,"mohi","bangalore");  
+  
+  FileOutputStream fout=new FileOutputStream("f.txt");  
+  ObjectOutputStream out=new ObjectOutputStream(fout);  
+  
+  out.writeObject(e);  
+  out.flush();  
+  System.out.println("success");  
+ }  
+}  
+
+import java.io.*;  
+class DeSerializeEx{  
+ public static void main(String args[])throws Exception{  
+    
+  ObjectInputStream in=new ObjectInputStream(new FileInputStream("f.txt"));  
+  Employee e=(Employee)in.readObject();  
+  System.out.println(e.id+" "+e.name+" " +e.loc);  
+  in.close();  
+ }  
+}  
